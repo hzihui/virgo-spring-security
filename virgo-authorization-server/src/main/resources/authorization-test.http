@@ -1,0 +1,8 @@
+###
+
+POST http://localhost:1000/oauth/token?username=user&password=123456&grant_type=password
+content-type: application/x-www-form-urlencoded
+authorization: Basic dGVzdDp0ZXN0
+
+###
+

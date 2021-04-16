@@ -1,0 +1,9 @@
+server:
+  port: 1000
+
+
+logging:
+  level:
+    com:
+      virgo:
+        spring: DEBUG
