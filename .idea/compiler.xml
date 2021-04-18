@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="virgo-authorization-server" />
+        <module name="virgo-resource-server" />
       </profile>
     </annotationProcessing>
   </component>

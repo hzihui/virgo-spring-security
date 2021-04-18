@@ -7,9 +7,10 @@
     <groupId>com.virgo.spring.security</groupId>
     <artifactId>virgo-spring-security</artifactId>
     <packaging>pom</packaging>
-    <version>${version}</version>
+    <version>1.0.0</version>
     <modules>
         <module>virgo-authorization-server</module>
+        <module>virgo-resource-server</module>
     </modules>
 
     <properties>
