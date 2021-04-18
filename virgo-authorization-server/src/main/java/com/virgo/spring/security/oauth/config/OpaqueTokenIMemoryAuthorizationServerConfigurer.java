@@ -62,6 +62,7 @@ public class OpaqueTokenIMemoryAuthorizationServerConfigurer extends Authorizati
                 .withClient("test")
                 .secret(passwordEncoder.encode("test"))
                 .scopes("test")
+                .redirectUris("http://localhost:3000/oauth/callback")
                 .authorizedGrantTypes("password","authorization_code","refresh_token","client_credentials");
     }
 

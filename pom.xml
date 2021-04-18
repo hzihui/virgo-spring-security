@@ -11,6 +11,7 @@
     <modules>
         <module>virgo-authorization-server</module>
         <module>virgo-resource-server</module>
+        <module>virgo-client-server</module>
     </modules>
 
     <properties>

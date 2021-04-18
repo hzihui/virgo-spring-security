@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="virgo-authorization-server" />
         <module name="virgo-resource-server" />
+        <module name="virgo-client-server" />
       </profile>
     </annotationProcessing>
   </component>
