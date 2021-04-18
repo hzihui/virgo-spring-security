@@ -31,7 +31,7 @@ import java.util.Collection;
 @Configuration
 @EnableAuthorizationServer
 @RequiredArgsConstructor
-public class IMemoryAuthorizationServerConfigurer extends AuthorizationServerConfigurerAdapter {
+public class OpaqueTokenIMemoryAuthorizationServerConfigurer extends AuthorizationServerConfigurerAdapter {
 
     private final AuthenticationManager authenticationManagerBean;
     private final PasswordEncoder passwordEncoder;

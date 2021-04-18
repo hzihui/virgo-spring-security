@@ -21,7 +21,7 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 @Configuration
 @EnableWebSecurity(debug = true)
 @RequiredArgsConstructor
-public class ResourceServerConfigurer extends WebSecurityConfigurerAdapter {
+public class OpaqueTokenResourceServerConfigurer extends WebSecurityConfigurerAdapter {
 
     /**
      * 认证相关、包括UserDetail、密码编码方式
