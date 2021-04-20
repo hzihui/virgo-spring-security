@@ -22,6 +22,7 @@ import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore;
 
 import java.util.Collection;
+import java.util.HashMap;
 
 /**
  * @author HZI.HUI
@@ -58,12 +59,22 @@ public class OpaqueTokenIMemoryAuthorizationServerConfigurer extends Authorizati
      */
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
+        HashMap<String, String> appInfo = new HashMap<>();
+        appInfo.put("url","https://www.baidu.com");
+        appInfo.put("name","百度");
         clients.inMemory()
                 .withClient("test")
                 .secret(passwordEncoder.encode("test"))
-                .scopes("test")
+                .scopes("read","writer")
+                .authorizedGrantTypes("password","refresh_token","client_credentials")
+                .and()
+                .withClient("baidu")
+                .secret(passwordEncoder.encode("baidu"))
+                .scopes("read","writer")
+                .additionalInformation(appInfo)
                 .redirectUris("http://localhost:3000/oauth/callback")
-                .authorizedGrantTypes("password","authorization_code","refresh_token","client_credentials");
+                .autoApprove(true)
+                .authorizedGrantTypes("authorization_code");
     }
 
 
@@ -79,43 +90,47 @@ public class OpaqueTokenIMemoryAuthorizationServerConfigurer extends Authorizati
                 .allowedTokenEndpointRequestMethods(HttpMethod.POST,HttpMethod.GET)
                 .authenticationManager(authenticationManagerBean)
                 .tokenStore(tokenStore())
-                .userDetailsService(userDetailsService());
+                .userDetailsService(userDetailsService())
+                .pathMapping("/oauth/confirm_access","/auth/confirm");
     }
 
 
     @Bean
     public UserDetailsService userDetailsService(){
-        return new UserDetailsService() {
-            public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-                return new UserDetails() {
-                    public Collection<? extends GrantedAuthority> getAuthorities() {
-                        return AuthorityUtils.createAuthorityList("roleA","roleB","roleC");
-                    }
+        return s -> new UserDetails() {
+            @Override
+            public Collection<? extends GrantedAuthority> getAuthorities() {
+                return AuthorityUtils.createAuthorityList("roleA","roleB","roleC");
+            }
 
-                    public String getPassword() {
-                        return passwordEncoder.encode("123456");
-                    }
+            @Override
+            public String getPassword() {
+                return passwordEncoder.encode("123456");
+            }
 
-                    public String getUsername() {
-                        return "user";
-                    }
+            @Override
+            public String getUsername() {
+                return "user";
+            }
 
-                    public boolean isAccountNonExpired() {
-                        return true;
-                    }
+            @Override
+            public boolean isAccountNonExpired() {
+                return true;
+            }
 
-                    public boolean isAccountNonLocked() {
-                        return true;
-                    }
+            @Override
+            public boolean isAccountNonLocked() {
+                return true;
+            }
 
-                    public boolean isCredentialsNonExpired() {
-                        return true;
-                    }
+            @Override
+            public boolean isCredentialsNonExpired() {
+                return true;
+            }
 
-                    public boolean isEnabled() {
-                        return true;
-                    }
-                };
+            @Override
+            public boolean isEnabled() {
+                return true;
             }
         };
     }

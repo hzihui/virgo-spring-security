@@ -33,7 +33,7 @@ public class OAuthTokenController {
 
         HttpHeaders httpHeaders  = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
-        httpHeaders.setBasicAuth("test","test");
+        httpHeaders.setBasicAuth("baidu","baidu");
 
         MultiValueMap<String,String> params = new LinkedMultiValueMap<>();
         params.add("code",code);

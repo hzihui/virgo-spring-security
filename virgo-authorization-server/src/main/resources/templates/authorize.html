@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <title>确认授权</title>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
+
+    <style>
+        html,body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <form id='confirmationForm' name='confirmationForm' action="../oauth/authorize" method='post'>
+        <input name='user_oauth_approval' value='true' type='hidden'/>
+        <div>
+            <a th:href="${app.get('url')}" target="_blank" th:text="${app.get('name')}">未指定应用名称</a> 将获得以下权限：
+        </div>
+        <ul class="list-group" style="margin: 30px 0; background: #f7f7f7; padding: 10px;">
+              <p th:each="scope: ${scopes}">
+                  <input type="hidden" th:name="${scope}" value="true"/>
+                  <input type="checkbox"  checked="checked" disabled th:text="${scope}"/>
+              </p>
+        </ul>
+        <button type="submit" class="btn btn-primary btn-block">确认授权</button>
+    </form>
+</div>
+</body>
+</html>

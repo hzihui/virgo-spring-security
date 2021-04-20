@@ -57,6 +57,6 @@ public class OpaqueTokenResourceServerConfigurer extends WebSecurityConfigurerAd
                 .anyRequest().authenticated())
                 .oauth2ResourceServer(resourceServer -> resourceServer.opaqueToken()
                         .introspectionUri("http://localhost:1000/oauth/check_token")
-                        .introspectionClientCredentials("test12","test"));
+                        .introspectionClientCredentials("test","test"));
     }
 }
