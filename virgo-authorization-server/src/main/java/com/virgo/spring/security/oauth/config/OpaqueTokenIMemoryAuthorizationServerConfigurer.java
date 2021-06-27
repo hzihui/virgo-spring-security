@@ -74,7 +74,7 @@ public class OpaqueTokenIMemoryAuthorizationServerConfigurer extends Authorizati
                 .additionalInformation(appInfo)
                 .redirectUris("http://localhost:3000/oauth/callback")
                 .autoApprove(true)
-                .authorizedGrantTypes("authorization_code");
+                .authorizedGrantTypes("authorization_code","refresh_token","implicit");
     }
 
 

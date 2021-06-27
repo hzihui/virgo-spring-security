@@ -17,6 +17,9 @@
     <properties>
         <version>1.0.0</version>
         <java.version>1.8</java.version>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.version>3.8.1</maven.compiler.version>
         <spring-boot.version>2.4.5</spring-boot.version>
         <spring-cloud.version>2020.0.2</spring-cloud.version>
         <hutool.version>5.6.3</hutool.version>
@@ -25,15 +28,18 @@
     </properties>
 
     <dependencies>
+        <!--lombok 注解开发插件依赖-->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <scope>provided</scope>
         </dependency>
+        <!--web 依赖-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+        <!--hutool 工具依赖-->
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
@@ -41,8 +47,10 @@
     </dependencies>
 
 
+    <!--依赖管理-->
     <dependencyManagement>
         <dependencies>
+            <!--Spring Boot 版本控制依赖-->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
@@ -50,6 +58,7 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            <!--Spring Cloud 版本控制依赖-->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
@@ -57,16 +66,19 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            <!--Hutool 版本控制依赖-->
             <dependency>
                 <groupId>cn.hutool</groupId>
                 <artifactId>hutool-all</artifactId>
                 <version>${hutool.version}</version>
             </dependency>
+            <!--Spring Cloud Oauth2 版本控制依赖-->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-starter-oauth2</artifactId>
                 <version>${spring-cloud-oauth.version}</version>
             </dependency>
+            <!-- bootstrap 样式依赖-->
             <dependency>
                 <groupId>org.webjars</groupId>
                 <artifactId>bootstrap</artifactId>
@@ -75,5 +87,21 @@
         </dependencies>
     </dependencyManagement>
 
+    <build>
+        <plugins>
+            <!--java 版本控制编译插件-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven.compiler.version}</version>
+                <configuration>
+                    <target>${maven.compiler.target}</target>
+                    <source>${maven.compiler.source}</source>
+                    <encoding>UTF-8</encoding>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
